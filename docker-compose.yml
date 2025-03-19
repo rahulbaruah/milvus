@@ -9,7 +9,7 @@ services:
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd
     command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
-    restart: always
+    restart: unless-stopped
 
   minio:
     container_name: milvus-minio
@@ -25,7 +25,7 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
-    restart: always
+    restart: unless-stopped
 
   milvus:
     container_name: milvus-standalone
@@ -42,7 +42,7 @@ services:
     depends_on:
       - "etcd"
       - "minio"
-    restart: always
+    restart: unless-stopped
 
   attu:
     container_name: milvus-attu
@@ -55,7 +55,7 @@ services:
       - "milvus"
     networks:
       - default
-    restart: always
+    restart: unless-stopped
 
 networks:
   default:
