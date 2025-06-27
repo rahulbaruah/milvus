@@ -1,5 +1,9 @@
 # README
 
-`docker compose up -d`
+1. Start Milvus
 
-default user='root' & password='Milvus'
+    `sudo docker compose up -d`
+
+2. Milvus WebUI
+
+    `http://127.0.0.1:9091/webui/`
