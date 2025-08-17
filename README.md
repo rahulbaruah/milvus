@@ -11,3 +11,7 @@
 3. Milvus Attu UI
 
    `http://13.203.159.60:8010`
+
+4. Enable Milvus Authentication
+
+   - To enable user authentication, you need to set `common.security.authorizationEnabled` as `true` in `milvus.yaml`.
