@@ -898,7 +898,7 @@ common:
   # This configuration is only used by querynode and indexnode, it selects CPU instruction set for Searching and Index-building.
   simdType: auto
   security:
-    authorizationEnabled: true
+    authorizationEnabled: false
     # The superusers will ignore some system check processes,
     # like the old password verification when updating the credential
     superUsers: 
