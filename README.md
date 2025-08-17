@@ -10,7 +10,7 @@
 
 3. Milvus Attu UI
 
-   `http://13.203.159.60:8010`
+   `http://127.0.0.1:8010`
 
 4. Enable Milvus Authentication
 
