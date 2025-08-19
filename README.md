@@ -7,3 +7,11 @@
 2. Milvus WebUI
 
     `http://127.0.0.1:9091/webui/`
+
+3. Milvus Attu UI
+
+   `http://127.0.0.1:8010`
+
+4. Enable Milvus Authentication
+
+   - To enable user authentication, you need to set `common.security.authorizationEnabled` as `true` in `milvus.yaml`.
