@@ -1,17 +1,21 @@
 # README
 
-1. Start Milvus
+1. Copy Milvus.yaml
+
+    `cp milvus.yaml.example milvus.yaml`
+
+2. Start Milvus
 
     `docker compose up -d`
 
-2. Milvus WebUI
+3. Milvus WebUI
 
     `http://127.0.0.1:9091/webui/`
 
-3. Milvus Attu UI
+4. Milvus Attu UI
 
    `http://127.0.0.1:8010`
 
-4. Enable Milvus Authentication
+5. Enable Milvus Authentication
 
    - To enable user authentication, you need to set `common.security.authorizationEnabled` as `true` in `milvus.yaml`.
