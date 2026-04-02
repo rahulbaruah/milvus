@@ -78,6 +78,22 @@ services:
       - default
     restart: unless-stopped
 
+  milvus-backup:
+    container_name: milvus-backup
+    image: milvusdb/milvus-backup:v0.5.12
+    command: server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backup.yaml:/app/configs/backup.yaml
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
+    depends_on:
+      standalone:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    restart: unless-stopped
+
 networks:
   default:
     name: milvus

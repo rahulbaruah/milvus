@@ -1,0 +1,51 @@
+log:
+  level: info
+  console: true
+  file:
+    rootPath: "logs/backup.log"
+
+http:
+  simpleResponse: true
+
+milvus:
+  address: standalone # service name on the milvus Docker network
+  port: 19530
+  authorizationEnabled: false
+  tlsMode: 0
+  user: ""
+  password: ""
+
+minio:
+  # Must match values in your milvus.yaml / Milvus defaults
+  storageType: "minio"
+  address: minio # service name on the milvus Docker network
+  port: 9000
+  accessKeyID: minioadmin
+  secretAccessKey: minioadmin
+  useSSL: false
+  useIAM: false
+  iamEndpoint: ""
+
+  # The bucket and root path Milvus itself uses — must match milvus.yaml
+  bucketName: "a-bucket"
+  rootPath: "files"
+
+  # Where backups are written inside the same bucket
+  backupBucketName: "a-bucket"
+  backupRootPath: "backup"
+
+backup:
+  maxSegmentGroupSize: 2G
+
+  parallelism:
+    backupCollectionParallelism: 2 # collections backed up concurrently
+    copyDataParallelism: 128 # parallel data-copy threads
+    restoreCollectionParallelism: 2 # collections restored concurrently
+
+  keepTempFiles: false
+
+  # Pause Milvus GC during backup to avoid partial-segment issues
+  gcPause:
+    enable: true
+    seconds: 7200
+    address: http://standalone:9091
