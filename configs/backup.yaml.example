@@ -1,0 +1,55 @@
+log:
+  level: info
+  console: true
+  file:
+    rootPath: "logs/backup.log"
+
+http:
+  simpleResponse: true
+
+milvus:
+  address: standalone # service name on the milvus Docker network
+  port: 19530
+  authorizationEnabled: true
+  tlsMode: 0
+  user: "root"
+  password: "Milvus"
+
+minio:
+  # Source — local MinIO where Milvus data lives (unchanged)
+  storageType: "minio"
+  address: minio
+  port: 9000
+  accessKeyID: minioadmin
+  secretAccessKey: minioadmin
+  useSSL: false
+  useIAM: false
+  iamEndpoint: ""
+  bucketName: "a-bucket"
+  rootPath: "files"
+
+  # Destination — AWS S3 where backups will be written
+  backupStorageType: "s3"
+  backupAddress: "s3.ap-south-1.amazonaws.com"
+  backupAccessKeyID: "YOUR_AWS_ACCESS_KEY_ID" # ← replace
+  backupSecretAccessKey: "YOUR_AWS_SECRET_ACCESS_KEY" # ← replace
+  backupBucketName: "YOUR_S3_BUCKET_NAME" # ← replace
+  backupRootPath: "milvus-backups"
+  backupRegion: "ap-south-1"
+  backupUseSSL: true
+
+backup:
+  maxSegmentGroupSize: 2G
+
+  parallelism:
+    backupCollectionParallelism: 2
+    copyDataParallelism: 128
+    restoreCollectionParallelism: 2
+
+  keepTempFiles: false
+
+  # Pause Milvus GC during backup to avoid partial-segment issues
+  gcPause:
+    enable: true
+    seconds: 7200
+    address: http://standalone:9091

@@ -85,7 +85,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./backup.yaml:/app/configs/backup.yaml
+      - ./configs/backup.yaml:/app/configs/backup.yaml
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
     depends_on:
       standalone:

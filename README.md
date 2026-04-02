@@ -93,3 +93,7 @@ curl -X POST http://localhost:8080/api/v1/restore \
 # Check restore status (use id from restore response)
 curl "http://localhost:8080/api/v1/get_restore?id=<restore_id>"
 ```
+
+Restart milvus backup
+
+`docker compose restart milvus-backup`
